@@ -35,8 +35,8 @@ public class URLService {
         return new ShortURLEntity(this.url + generatedString);
     }
 
-    public LongURLEntity getLongUrlByString(String pathVar) {
+    public LongURLEntity getLongUrlByString(String shortURLString) {
 
-        return new LongURLEntity(urlRepository.findByShortURL(pathVar).getLongURL());
+        return new LongURLEntity(urlRepository.findByShortURL(shortURLString).getLongURL());
     }
 }
