@@ -19,10 +19,8 @@ public class RedirectController {
     public RedirectView redirectToShortURL(@PathVariable(value="urlID") String id) {
 
         //Retrieve link from urlService
-        String longURL = urlService.getLongUrlByString(id);
-
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl(longURL);
+        redirectView.setUrl(urlService.getLongUrlByString(id).getLongURL());
 
         return redirectView;
     }

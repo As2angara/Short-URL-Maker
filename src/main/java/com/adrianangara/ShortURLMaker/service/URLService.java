@@ -1,6 +1,8 @@
 package com.adrianangara.ShortURLMaker.service;
 
+import com.adrianangara.ShortURLMaker.entity.LongURLEntity;
 import com.adrianangara.ShortURLMaker.entity.MappingEntity;
+import com.adrianangara.ShortURLMaker.entity.ShortURLEntity;
 import com.adrianangara.ShortURLMaker.repository.URLRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ public class URLService {
     @Autowired
     private URLRepository urlRepository;
 
-    public MappingEntity createShortURLMapping(MappingEntity entity) {
+    public ShortURLEntity createShortURL(LongURLEntity longURLEntity) {
 
         //Create unique URL
         int length = 10;
@@ -25,15 +27,16 @@ public class URLService {
         String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
 
         //Save entity to DB
-        entity.setShortURL(generatedString);
+        MappingEntity mappingEntity = new MappingEntity();
+        mappingEntity.setLongURL(longURLEntity.getLongURL());
+        mappingEntity.setShortURL(generatedString);
+        urlRepository.save(mappingEntity);
 
-        return urlRepository.save(entity);
+        return new ShortURLEntity(this.url + generatedString);
     }
 
-    public String getLongUrlByString(String pathVar) {
+    public LongURLEntity getLongUrlByString(String pathVar) {
 
-        String longURL = urlRepository.findByShortURL(pathVar).getLongURL();
-
-        return longURL;
+        return new LongURLEntity(urlRepository.findByShortURL(pathVar).getLongURL());
     }
 }
