@@ -1,5 +1,5 @@
-#Short URL Maker
-###by Adrian Angara
+# Short URL Maker
+### by Adrian Angara
 
 This is a repository containing my project assessment as part of IC Thrive's interview process.
 It is an API that shortens long URLs by creating a unique identifier that will direct the request to the desired page. 
@@ -27,7 +27,7 @@ As such, this project utilizes the following technologies:
 
 Please use a client application such as Postman to utilize these endpoints.
 
-###Endpoint 1: /api/ping
+### Endpoint 1: /api/ping
 
 HTTP Method: GET
 
@@ -35,7 +35,7 @@ Sample response object:
     
         {"success":true}
 
-###Endpoint 2: /api/
+### Endpoint 2: /api/
 
 HTTP Method: POST
 
